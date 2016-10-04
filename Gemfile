@@ -37,6 +37,8 @@ gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'omniauth-facebook'
 
+gem 'simple_form'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
