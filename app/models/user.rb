@@ -5,6 +5,8 @@ class User < ApplicationRecord
        		:recoverable, :rememberable, :trackable, :validatable,
        		:omniauthable, :omniauth_providers => [:facebook]
 
+  has_one :nanny, inverse_of: :user
+
 
   serialize :fb_raw_data
 

@@ -7,9 +7,11 @@
 
 
 
-<%= simple_form_for @user do |f|%>
-	<%= f.input :line_id %>
-	<%= f.input :phone %>
-	<%= f.button :submit %>
+<%= simple_form_for @nanny do |u|%>
+	<%= u.simple_fields_for :user do |f| %>
+		<%= f.input :line_id %>
+		<%= f.input :phone %>
+	<% end %>
 
+	<%= u.button :submit %>
 <% end %>
