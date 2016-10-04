@@ -1,5 +1,5 @@
 hello world
- <% if current_user %>
+  <% if current_user %>
     <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
     <%= link_to('修改密碼', edit_registration_path(:user)) %>
   <% else %>
@@ -7,27 +7,11 @@ hello world
     <%= link_to('登入', new_session_path(:user)) %>
     <%= link_to "登入 Facebook", user_facebook_omniauth_authorize_path %>
   <% end %>
-<div
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
-</div>
 
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '1692746124320256',
-      xfbml      : true,
-      version    : 'v2.7'
-    });
-  };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+	<% if current_user && current_user.type == nil %>
+		<%= image_tag current_user.fb_pic%>
+		<%= current_user.name%>
+
+		<%= link_to('我是保母', new_nanny_path()) %>
+	<% end %>
