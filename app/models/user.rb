@@ -12,7 +12,8 @@ class User < ApplicationRecord
      user = User.find_by_fb_uid( auth.uid )
      if user
         user.fb_token = auth.credentials.token
-        #user.fb_raw_data = auth
+        user.fb_raw_data = auth
+        user.fb_pic = auth.info.image
         user.save!
        return user
      end
@@ -22,7 +23,8 @@ class User < ApplicationRecord
      if existing_user
        existing_user.fb_uid = auth.uid
        existing_user.fb_token = auth.credentials.token
-       #existing_user.fb_raw_data = auth
+       existing_user.fb_raw_data = auth
+       existing_user.fb_pic = auth.info.image
        existing_user.save!
        return existing_user
      end
@@ -33,7 +35,8 @@ class User < ApplicationRecord
      user.fb_token = auth.credentials.token
      user.email = auth.info.email
      user.password = Devise.friendly_token[0,20]
-     #user.fb_raw_data = auth
+     user.fb_raw_data = auth
+     user.fb_pic = auth.info.image
      user.save!
      return user
    end
