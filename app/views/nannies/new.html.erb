@@ -1,0 +1,15 @@
+
+
+保母
+
+<%= image_tag current_user.fb_pic , class: "img-circle" %>
+<%= current_user.name %>
+
+
+
+<%= simple_form_for @user do |f|%>
+	<%= f.input :line_id %>
+	<%= f.input :phone %>
+	<%= f.button :submit %>
+
+<% end %>

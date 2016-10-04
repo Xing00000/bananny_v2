@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   root :to => "welcome#index"
 
   resources :nannies
+  resources :users
 
 end
