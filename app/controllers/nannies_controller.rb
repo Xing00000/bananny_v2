@@ -1,16 +1,18 @@
 class NanniesController < ApplicationController
 	before_action :authenticate_user!
+	before_action :set_nanny, only: [:update]
 
 	def new
 		if current_user.nanny.present?
 			@nanny = current_user.nanny
+			@image = @nanny.build_image
 		else
 			@nanny = current_user.build_nanny
+			@image = @nanny.build_image
 		end
 	end
 
 	def create
-
 		if current_user.nanny.present?
 			redirect_to root_path , notice: '已註冊保母,請勿重複註冊!'
 	  else
@@ -18,6 +20,7 @@ class NanniesController < ApplicationController
 	    respond_to do |format|
 	      if @nanny.save
 	      	@nanny.user.update(user_data)
+	      	@nanny.create_image(license_image)
 	        format.html { redirect_to @nanny, notice: 'Nanny was successfully created.' }
 	        format.json { render :show, status: :created, location: @nanny }
 	      else
@@ -26,6 +29,20 @@ class NanniesController < ApplicationController
 	      end
 	    end
 	  end
+  end
+
+	def update
+	  respond_to do |format|
+	      if current_user.nanny.update(nanny_params)
+	      	@nanny.user.update(user_data)
+	      	@nanny.image.update(license_image)
+	        format.html { redirect_to @nanny, notice: '更新成功!' }
+	        format.json { render :show, status: :created, location: @nanny }
+	      else
+	        format.html { render :new }
+	        format.json { render json: @nanny.errors, status: :unprocessable_entity }
+	      end
+	    end
 
   end
 
@@ -37,13 +54,16 @@ class NanniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def nanny_params
-      params.require(:nanny).permit(:user_attributes => [:line_id, :phone, :id])
+      params.require(:nanny).permit(:status,
+      															:user_attributes => [:line_id, :phone, :id],
+      															:image_attributes => [:image])
     end
 
     def user_data
     	nanny_params[:user_attributes]
     end
 
-
-
+    def license_image
+    	nanny_params[:image_attributes]
+    end
 end

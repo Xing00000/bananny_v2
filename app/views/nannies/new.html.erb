@@ -13,5 +13,11 @@
 		<%= f.input :phone %>
 	<% end %>
 
+	<%= u.input :status %>
+
+	<%= u.simple_fields_for :image do |i| %>
+		<%= i.input :image, :as => :file %>
+	<% end %>
+
 	<%= u.button :submit %>
 <% end %>
