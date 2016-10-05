@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004114429) do
+ActiveRecord::Schema.define(version: 20161005030708) do
 
   create_table "images", force: :cascade do |t|
     t.string   "image"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20161004114429) do
     t.string   "orther_qualification"
     t.date     "since"
     t.date     "care_start_date"
-    t.string   "type"
+    t.string   "nanny_type"
     t.string   "status"
     t.integer  "user_id"
     t.datetime "created_at",           null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20161004114429) do
     t.string   "gender"
     t.string   "phone"
     t.date     "birthdate"
-    t.string   "type"
+    t.string   "user_type"
     t.string   "line_id"
     t.string   "fb_uid"
     t.string   "fb_token"
