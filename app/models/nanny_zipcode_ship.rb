@@ -1,0 +1,2 @@
+class NannyZipcodeShip < ApplicationRecord
+end

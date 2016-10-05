@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161005064657) do
+ActiveRecord::Schema.define(version: 20161005100448) do
 
   create_table "images", force: :cascade do |t|
     t.string   "image"
@@ -36,6 +36,24 @@ ActiveRecord::Schema.define(version: 20161005064657) do
     t.boolean  "long_tern"
     t.boolean  "short_tern"
     t.index ["user_id"], name: "index_nannies_on_user_id"
+  end
+
+  create_table "nanny_zipcode_ships", force: :cascade do |t|
+    t.integer  "nanny_id"
+    t.integer  "zipcode_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nanny_id"], name: "index_nanny_zipcode_ships_on_nanny_id"
+    t.index ["zipcode_id"], name: "index_nanny_zipcode_ships_on_zipcode_id"
+  end
+
+  create_table "preferences", force: :cascade do |t|
+    t.integer  "nanny_id"
+    t.string   "name"
+    t.boolean  "like"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["nanny_id"], name: "index_preferences_on_nanny_id"
   end
 
   create_table "users", force: :cascade do |t|
