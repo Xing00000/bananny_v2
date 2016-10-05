@@ -3,8 +3,6 @@
 保母
 
 <%= image_tag current_user.fb_pic , class: "img-circle" if current_user.fb_pic.present? %>
-<%= current_user.name %>
-
 
 <% if @nanny.status == nil %>
 
@@ -35,22 +33,23 @@
 		<%= simple_form_for @nanny do |n|%>
 
 			<%= n.simple_fields_for :user do |u| %>
-				<%= u.input :name %>
-				<%= u.input :nickname %>
+				<%= u.input :name, label: '姓名'%>
+				<%= u.input :nickname, label: '暱稱' %>
 				<%= u.input :line_id %>
-				<%= u.input :phone %>
-				<%= u.input :birthdate %>
+				<%= u.input :phone, label: '手機號碼', as: :tel, html5: true  %>
+				<%= u.input :birthdate, label: '生日', as: :date, html5: true %>
 			<% end %>
 
-			<%= n.input :license_number %>
-			<%= n.input :introduction %>
-			<%= n.input :qualification %>
-			<%= n.input :orther_qualification %>
-			<%= n.input :since %>
-			<%= n.input :care_start_date %>
-			<%= n.input :long_tern %>
-			<%= n.input :short_tern %>
-			<%= n.input :nanny_type, collection: [:到府, :在宅], as: :radio_buttons %>
+			<%= n.input :license_number, label: '保母證照號碼' %>
+			<%= n.input :introduction, label: '自我介紹' %>
+			<%= n.input :qualification, label: '專業資格', collection: [:取得保母人員技術士證, "高級中等以上學校幼兒保育、家政、護理相關學程、科、系、所畢業","修畢托育人員（保母）專業訓練課程且領有結業證書"], as: :check_boxes %>
+			<%= n.input :orther_qualification, label: '其他專業資格', collection: ["托育師/高級托育師","CPR",:其他], as: :check_boxes %>
+			<%= n.label :拖育經驗起始日%>
+			<%= n.month_field :since %>
+			<%= n.input :care_start_date, label: '開始可接案日期', as: :date, html5: true %>
+			<%= n.input :long_tern, label: '長期' %>
+			<%= n.input :short_tern, label: '短期' %>
+			<%= n.input :nanny_type, label: '接案類型', collection: [:到府, :在宅], as: :radio_buttons %>
 
 			<%= n.button :submit %>
 		<% end %>
