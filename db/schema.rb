@@ -12,15 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20161005064657) do
 
-  create_table "Zipcodes", force: :cascade do |t|
-    t.integer  "zipcode"
-    t.string   "city"
-    t.string   "area"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["zipcode"], name: "index_zipcodes_on_zipcode"
-  end
-
   create_table "images", force: :cascade do |t|
     t.string   "image"
     t.string   "imageable_type"
@@ -74,6 +65,15 @@ ActiveRecord::Schema.define(version: 20161005064657) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["fb_uid"], name: "index_users_on_fb_uid"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "zipcodes", force: :cascade do |t|
+    t.integer  "zipcode"
+    t.string   "city"
+    t.string   "area"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["zipcode"], name: "index_zipcodes_on_zipcode"
   end
 
 end

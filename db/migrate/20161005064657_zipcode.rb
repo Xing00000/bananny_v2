@@ -1,6 +1,6 @@
 class Zipcode < ActiveRecord::Migration[5.0]
   def change
-  	create_table :Zipcodes do |t|
+  	create_table :zipcodes do |t|
     	t.integer :zipcode
       t.string :city
       t.string :area
