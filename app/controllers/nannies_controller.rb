@@ -17,15 +17,15 @@ class NanniesController < ApplicationController
 			redirect_to root_path , notice: '已註冊保母,請勿重複註冊!'
 	  else
 	   	@nanny = current_user.build_nanny
+	   	@nanny.status = "checking"
 	    respond_to do |format|
-	      if @nanny.save(:status => "checking")
+	      if @nanny.save
+	      	current_user.user_type = "nanny"
 	      	@nanny.user.update(user_data)
 	      	@nanny.create_image(license_image)
-
-	        format.html { render :new, notice: 'Nanny was successfully created.' }
-
+	        format.html { redirect_to new_nanny_path, notice: 'Nanny was successfully created.' }
 	      else
-	        format.html { render :new }
+	        format.html { redirect_to new_nanny_path }
 
 	      end
 	    end
@@ -33,17 +33,16 @@ class NanniesController < ApplicationController
   end
 
 	def update
-	  respond_to do |format|
-	      if current_user.nanny.update(nanny_params)
-	      	@nanny.user.update(user_data)
-	      	@nanny.image.update(license_image)
-	        format.html { redirect_to @nanny, notice: '更新成功!' }
-	        format.json { render :show, status: :created, location: @nanny }
-	      else
-	        format.html { render :new }
-	        format.json { render json: @nanny.errors, status: :unprocessable_entity }
-	      end
-	    end
+		nanny = current_user.nanny
+	  if nanny.status == "checking"
+	    nanny.update_attributes(nanny_params)
+	    redirect_to new_nanny_path, notice: '更新成功!'
+	  elsif nanny.status == "pass"
+
+
+
+	  	redirect_to nanny, notice: '更新成功!'
+	  end
 
   end
 
@@ -56,8 +55,8 @@ class NanniesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def nanny_params
       params.require(:nanny).permit(:status,
-      															:user_attributes => [:line_id, :phone, :id],
-      															:image_attributes => [:image, :id])
+      															:user_attributes => [:line_id, :phone, :id, :_destroy],
+      															:image_attributes => [:image, :id, :_destroy])
     end
 
     def user_data

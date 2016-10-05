@@ -9,9 +9,10 @@ hello world
   <% end %>
 
 
-	<% if current_user && current_user.type == nil %>
-		<%= image_tag current_user.fb_pic%>
+	<% if current_user && current_user.user_type == nil %>
+		<%= image_tag current_user.fb_pic if current_user.fb_pic.present? %>
 		<%= current_user.name%>
 
 		<%= link_to('我是保母', new_nanny_path()) %>
 	<% end %>
+<%= link_to('我是保母', new_nanny_path()) %>

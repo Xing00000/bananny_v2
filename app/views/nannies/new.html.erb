@@ -2,23 +2,23 @@
 
 保母
 
-<%= image_tag current_user.fb_pic , class: "img-circle" %>
+<%= image_tag current_user.fb_pic , class: "img-circle" if current_user.fb_pic.present? %>
 <%= current_user.name %>
 
 
-<% if @nanny.status == "nil" %>
+<% if @nanny.status == nil %>
 
-		<%= simple_form_for @nanny do |u|%>
-			<%= u.simple_fields_for :user do |f| %>
-				<%= f.input :line_id %>
-				<%= f.input :phone %>
+		<%= simple_form_for @nanny do |n|%>
+			<%= n.simple_fields_for :user do |u| %>
+				<%= u.input :line_id, required: true %>
+				<%= u.input :phone, required: true%>
 			<% end %>
 
-			<%= u.simple_fields_for :image do |i| %>
-				<%= i.input :image, :as => :file %>
+			<%= n.simple_fields_for :image do |i| %>
+				<%= i.input :image, :as => :file, required: true %>
 			<% end %>
 
-			<%= u.button :submit %>
+			<%= n.button :submit %>
 		<% end %>
 
 <% elsif @nanny.status == "checking" %>
@@ -30,13 +30,30 @@
 		<% end %>
 
 
-
-
-
-
-
 <% elsif @nanny.status == "pass" %>
 
+		<%= simple_form_for @nanny do |n|%>
 
+			<%= n.simple_fields_for :user do |u| %>
+				<%= u.input :name %>
+				<%= u.input :nickname %>
+				<%= u.input :line_id %>
+				<%= u.input :phone %>
+				<%= u.input :birthdate %>
+			<% end %>
+
+			<%= n.input :license_number %>
+			<%= n.input :introduction %>
+			<%= n.input :qualification %>
+			<%= n.input :orther_qualification %>
+			<%= n.input :since %>
+			<%= n.input :care_start_date %>
+
+
+
+			<p>到府</p>
+
+			<%= n.button :submit %>
+		<% end %>
 
 <% end %>
