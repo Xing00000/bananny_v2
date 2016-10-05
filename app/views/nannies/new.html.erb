@@ -48,10 +48,9 @@
 			<%= n.input :orther_qualification %>
 			<%= n.input :since %>
 			<%= n.input :care_start_date %>
-
-
-
-			<p>到府</p>
+			<%= n.input :long_tern %>
+			<%= n.input :short_tern %>
+			<%= n.input :nanny_type, collection: [:到府, :在宅], as: :radio_buttons %>
 
 			<%= n.button :submit %>
 		<% end %>

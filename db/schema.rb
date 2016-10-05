@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161005030708) do
+ActiveRecord::Schema.define(version: 20161005060207) do
 
   create_table "images", force: :cascade do |t|
     t.string   "image"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20161005030708) do
     t.integer  "user_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.boolean  "long_tern"
+    t.boolean  "short_tern"
     t.index ["user_id"], name: "index_nannies_on_user_id"
   end
 

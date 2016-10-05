@@ -38,9 +38,7 @@ class NanniesController < ApplicationController
 	    nanny.update_attributes(nanny_params)
 	    redirect_to new_nanny_path, notice: '更新成功!'
 	  elsif nanny.status == "pass"
-
-
-
+	  	nanny.update_attributes(nanny_params)
 	  	redirect_to nanny, notice: '更新成功!'
 	  end
 
@@ -54,8 +52,11 @@ class NanniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def nanny_params
-      params.require(:nanny).permit(:status,
-      															:user_attributes => [:line_id, :phone, :id, :_destroy],
+      params.require(:nanny).permit(:status,:license_number, :introduction, :qualification,
+      															:orther_qualification, :since, :care_start_date,
+																		:long_tern, :short_tern, :nanny_type,
+      															:user_attributes => [:name, :nickname, :birthdate,
+      																									 :line_id, :phone, :id, :_destroy],
       															:image_attributes => [:image, :id, :_destroy])
     end
 
@@ -68,3 +69,7 @@ class NanniesController < ApplicationController
     end
 
 end
+
+
+
+
