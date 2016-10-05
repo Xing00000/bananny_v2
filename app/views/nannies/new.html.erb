@@ -6,21 +6,37 @@
 <%= current_user.name %>
 
 
+<% if @nanny.status == "nil" %>
 
-<%= simple_form_for @nanny do |u|%>
-	<%= u.simple_fields_for :user do |f| %>
-		<%= f.input :line_id %>
-		<%= f.input :phone %>
-	<% end %>
+		<%= simple_form_for @nanny do |u|%>
+			<%= u.simple_fields_for :user do |f| %>
+				<%= f.input :line_id %>
+				<%= f.input :phone %>
+			<% end %>
 
-	<%= u.input :status %>
+			<%= u.simple_fields_for :image do |i| %>
+				<%= i.input :image, :as => :file %>
+			<% end %>
 
-	<%= u.simple_fields_for :image do |i| %>
-		<%= i.input :image, :as => :file %>
-	<% end %>
+			<%= u.button :submit %>
+		<% end %>
 
-	<%= u.button :submit %>
-<% end %>
-<%if @image.image.present? %>
-	<%= image_tag @image.image %>
+<% elsif @nanny.status == "checking" %>
+
+		審核中!
+
+		<%if @image.image.present? %>
+			<%= image_tag @image.image %>
+		<% end %>
+
+
+
+
+
+
+
+<% elsif @nanny.status == "pass" %>
+
+
+
 <% end %>

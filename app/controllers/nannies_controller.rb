@@ -18,14 +18,15 @@ class NanniesController < ApplicationController
 	  else
 	   	@nanny = current_user.build_nanny
 	    respond_to do |format|
-	      if @nanny.save
+	      if @nanny.save(:status => "checking")
 	      	@nanny.user.update(user_data)
 	      	@nanny.create_image(license_image)
-	        format.html { redirect_to @nanny, notice: 'Nanny was successfully created.' }
-	        format.json { render :show, status: :created, location: @nanny }
+
+	        format.html { render :new, notice: 'Nanny was successfully created.' }
+
 	      else
 	        format.html { render :new }
-	        format.json { render json: @nanny.errors, status: :unprocessable_entity }
+
 	      end
 	    end
 	  end
