@@ -39,7 +39,9 @@ class NanniesController < ApplicationController
 	    redirect_to new_nanny_path, notice: '更新成功!'
 	  elsif nanny.status == "pass"
 	  	nanny.update_attributes(nanny_params)
-	  	redirect_to nanny, notice: '更新成功!'
+	  	if nanny.nanny_type == "到府"
+	  		redirect_to new_on_side_nanny_path, notice: '到府保母!'
+	  	end
 	  end
 
   end
