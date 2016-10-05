@@ -21,3 +21,6 @@
 
 	<%= u.button :submit %>
 <% end %>
+<%if @image.image.present? %>
+	<%= image_tag @image.image %>
+<% end %>

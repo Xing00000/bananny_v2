@@ -5,7 +5,7 @@ class NanniesController < ApplicationController
 	def new
 		if current_user.nanny.present?
 			@nanny = current_user.nanny
-			@image = @nanny.build_image
+			@image = @nanny.image
 		else
 			@nanny = current_user.build_nanny
 			@image = @nanny.build_image
@@ -56,7 +56,7 @@ class NanniesController < ApplicationController
     def nanny_params
       params.require(:nanny).permit(:status,
       															:user_attributes => [:line_id, :phone, :id],
-      															:image_attributes => [:image])
+      															:image_attributes => [:image, :id])
     end
 
     def user_data
@@ -66,4 +66,5 @@ class NanniesController < ApplicationController
     def license_image
     	nanny_params[:image_attributes]
     end
+
 end
