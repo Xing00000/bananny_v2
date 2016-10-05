@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161005060207) do
+ActiveRecord::Schema.define(version: 20161005064657) do
+
+  create_table "Zipcodes", force: :cascade do |t|
+    t.integer  "zipcode"
+    t.string   "city"
+    t.string   "area"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["zipcode"], name: "index_zipcodes_on_zipcode"
+  end
 
   create_table "images", force: :cascade do |t|
     t.string   "image"
