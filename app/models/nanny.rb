@@ -5,7 +5,8 @@ class Nanny < ApplicationRecord
 
 	has_many :nanny_zipcode_ships, :dependent => :destroy
   has_many :zipcodes, :through => :nanny_zipcode_ships
-  has_many :preferences, :dependent => :destroy
+  has_many :nanny_preference_ships, :dependent => :destroy
+  has_many :preferences, :through => :nanny_preference_ships
 
 	accepts_nested_attributes_for :user
 	accepts_nested_attributes_for :image, :reject_if => :all_blank, :allow_destroy => true

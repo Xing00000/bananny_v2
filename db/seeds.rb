@@ -6,7 +6,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#preference
 
+unless Preference.find_by(:name => "不接受家有寵物")
+  Preference.create!(:name => "不接受家有寵物")
+  Preference.create!(:name => "無法收托雙胞胎")
+  Preference.create!(:name => "不接受清掃家裡")
+end
+
+#zipcode
 data = {
         '基隆市': {'仁愛區': '200', '信義區': '201', '中正區': '202', '中山區': '203', '安樂區': '204', '暖暖區': '205', '七堵區': '206'},
         '台北市': {'中正區': '100', '大同區': '103', '中山區': '104', '松山區': '105', '大安區': '106', '萬華區': '108', '信義區': '110', '士林區': '111', '北投區': '112', '內湖區': '114', '南港區': '115', '文山區': '116'},
