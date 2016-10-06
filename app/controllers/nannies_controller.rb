@@ -55,13 +55,14 @@ class NanniesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def nanny_params
       params.require(:nanny).permit(:status,:license_number, :introduction, :since, :care_start_date,
-																		:long_tern, :short_tern, :nanny_type,
-      															{ qualification: [],orther_qualification:[],
-      																zipcode_ids: [], preference_ids: [] },
+																		:long_tern, :short_tern, :nanny_type, :min_care_hour,
+      															{ :qualification => [], :orther_qualification => [],
+      																:zipcode_ids => [], :preference_ids => [] },
       															:user_attributes => [:name, :nickname, :birthdate,
       																									 :line_id, :phone, :id, :_destroy],
       															:image_attributes => [:image, :id, :_destroy],
-      															:schedule_settings_attributes => [:available, :start_at, :end_at, :id, :_destroy])
+      															:schedule_settings_attributes => [:available, :start_at, :end_at, :id, :_destroy],
+      															:nanny_charges_attributes => [:amount, :id, :_destroy])
     end
 
     def user_data
