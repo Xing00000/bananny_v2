@@ -56,7 +56,7 @@ class NanniesController < ApplicationController
     def nanny_params
       params.require(:nanny).permit(:status,:license_number, :introduction, :since, :care_start_date,
 																		:long_tern, :short_tern, :nanny_type, :min_care_hour,
-      															{ :qualification => [], :orther_qualification => [],
+      															{ :qualification_ids => [], :orther_qualification => [],
       																:zipcode_ids => [], :preference_ids => [] },
       															:user_attributes => [:name, :nickname, :birthdate,
       																									 :line_id, :phone, :id, :_destroy],

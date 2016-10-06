@@ -12,10 +12,14 @@ class Nanny < ApplicationRecord
   has_many :schedule_settings, :dependent => :destroy
   has_many :nanny_charges, :dependent => :destroy
 
+  has_many :nanny_qualification_ships, :dependent => :destroy
+  has_many :qualifications, :through => :nanny_qualification_ships
+
 	accepts_nested_attributes_for :user
 	accepts_nested_attributes_for :image, :reject_if => :all_blank, :allow_destroy => true
 	accepts_nested_attributes_for :preferences, :reject_if => :all_blank, :allow_destroy => true
 	accepts_nested_attributes_for	:schedule_settings, :reject_if => :all_blank, :allow_destroy => true
 	accepts_nested_attributes_for	:nanny_charges, :reject_if => :all_blank, :allow_destroy => true
+	accepts_nested_attributes_for	:qualifications, :reject_if => :all_blank, :allow_destroy => true
 
 end

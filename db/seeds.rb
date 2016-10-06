@@ -8,11 +8,17 @@
 
 #preference
 
-unless Preference.find_by(:name => "不接受家有寵物")
-  Preference.create!(:name => "不接受家有寵物")
-  Preference.create!(:name => "無法收托雙胞胎")
-  Preference.create!(:name => "不接受清掃家裡")
-end
+
+Preference.where(:name => "不接受家有寵物").first_or_create!
+Preference.where(:name => "無法收托雙胞胎").first_or_create!
+Preference.where(:name => "不接受清掃家裡").first_or_create!
+
+
+#Qualification
+
+Qualification.where(:name => "取得保母人員技術士證").first_or_create!
+Qualification.where(:name => "高級中等以上學校幼兒保育、家政、護理相關學程、科、系、所畢業").first_or_create!
+Qualification.where(:name => "修畢托育人員（保母）專業訓練課程且領有結業證書").first_or_create!
 
 #zipcode
 data = {
