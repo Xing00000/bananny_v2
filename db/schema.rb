@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006020842) do
+ActiveRecord::Schema.define(version: 20161006060556) do
 
   create_table "images", force: :cascade do |t|
     t.string   "image"
@@ -60,6 +60,18 @@ ActiveRecord::Schema.define(version: 20161006020842) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "schedule_settings", force: :cascade do |t|
+    t.integer  "nanny_id"
+    t.integer  "week"
+    t.time     "start_at"
+    t.time     "end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "available"
+    t.index ["nanny_id"], name: "index_schedule_settings_on_nanny_id"
+    t.index ["week"], name: "index_schedule_settings_on_week"
   end
 
   create_table "users", force: :cascade do |t|
