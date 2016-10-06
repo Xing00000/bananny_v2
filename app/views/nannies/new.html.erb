@@ -42,8 +42,8 @@
 
 			<%= n.input :license_number, label: '保母證照號碼' %>
 			<%= n.input :introduction, label: '自我介紹' %>
-			<%= n.association :qualifications,:as => :check_boxes, label_method: :name, value_method: :id, include_blank: false %>
-			<%= n.input :orther_qualification, label: '其他專業資格', collection: ["托育師/高級托育師","CPR",:其他], as: :check_boxes %>
+			<%= n.association :qualifications, :as => :check_boxes, label_method: :name, value_method: :id, include_blank: false %>
+			<%= n.association :orther_qualifications, :as => :check_boxes, label_method: :name, value_method: :id, include_blank: false %>
 			<%= n.label :拖育經驗起始日%>
 			<%= n.month_field :since %>
 			<%= n.input :long_tern, label: '長期' %>

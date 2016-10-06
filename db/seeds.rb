@@ -20,6 +20,12 @@ Qualification.where(:name => "取得保母人員技術士證").first_or_create!
 Qualification.where(:name => "高級中等以上學校幼兒保育、家政、護理相關學程、科、系、所畢業").first_or_create!
 Qualification.where(:name => "修畢托育人員（保母）專業訓練課程且領有結業證書").first_or_create!
 
+#Orther_Qualification
+
+OrtherQualification.where(:name => "托育師").first_or_create!
+OrtherQualification.where(:name => "高級托育師").first_or_create!
+OrtherQualification.where(:name => "CPR").first_or_create!
+
 #zipcode
 data = {
         '基隆市': {'仁愛區': '200', '信義區': '201', '中正區': '202', '中山區': '203', '安樂區': '204', '暖暖區': '205', '七堵區': '206'},
