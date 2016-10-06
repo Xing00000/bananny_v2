@@ -1,1 +1,7 @@
 到府保母
+
+<%= simple_form_for @nanny do |n|%>
+	<%= n.association :zipcodes, label_method: :area, value_method: :id, include_blank: false %>
+	<%= n.association :preferences, :as => :check_boxes ,label_method: :name, value_method: :id, include_blank: false %>
+	<%= n.button :submit %>
+<% end %>
