@@ -60,7 +60,8 @@ class NanniesController < ApplicationController
       																zipcode_ids: [], preference_ids: [] },
       															:user_attributes => [:name, :nickname, :birthdate,
       																									 :line_id, :phone, :id, :_destroy],
-      															:image_attributes => [:image, :id, :_destroy])
+      															:image_attributes => [:image, :id, :_destroy],
+      															:schedule_settings_attributes => [:available, :start_at, :end_at, :id, :_destroy])
     end
 
     def user_data

@@ -3,5 +3,13 @@
 <%= simple_form_for @nanny do |n|%>
 	<%= n.association :zipcodes, label_method: :area, value_method: :id, include_blank: false %>
 	<%= n.association :preferences, :as => :check_boxes ,label_method: :name, value_method: :id, include_blank: false %>
+	<%= n.simple_fields_for :schedule_settings do |w| %>
+		<%= w.input :available, label: '' %>
+		星期
+		<%= w.input :start_at, as: :time, html5: true %>
+		<%= w.input :end_at, as: :time, html5: true %>
+	<% end %>
+	<%= n.input :care_start_date, label: '開始可接案日期', as: :date, html5: true %>
+
 	<%= n.button :submit %>
 <% end %>

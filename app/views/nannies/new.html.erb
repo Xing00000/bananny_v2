@@ -46,7 +46,6 @@
 			<%= n.input :orther_qualification, label: '其他專業資格', collection: ["托育師/高級托育師","CPR",:其他], as: :check_boxes %>
 			<%= n.label :拖育經驗起始日%>
 			<%= n.month_field :since %>
-			<%= n.input :care_start_date, label: '開始可接案日期', as: :date, html5: true %>
 			<%= n.input :long_tern, label: '長期' %>
 			<%= n.input :short_tern, label: '短期' %>
 			<%= n.input :nanny_type, label: '接案類型', collection: [:到府, :在宅], as: :radio_buttons %>
