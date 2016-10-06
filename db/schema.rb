@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006173254) do
+ActiveRecord::Schema.define(version: 20161006180502) do
 
   create_table "images", force: :cascade do |t|
     t.string   "image"
@@ -24,15 +24,13 @@ ActiveRecord::Schema.define(version: 20161006173254) do
   create_table "nannies", force: :cascade do |t|
     t.text     "introduction"
     t.string   "license_number"
-    t.string   "qualification"
-    t.string   "orther_qualification"
     t.date     "since"
     t.date     "care_start_date"
     t.string   "nanny_type"
     t.string   "status"
     t.integer  "user_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.boolean  "long_tern"
     t.boolean  "short_tern"
     t.integer  "min_care_hour"
