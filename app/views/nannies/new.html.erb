@@ -4,7 +4,7 @@
 
 <%= image_tag current_user.fb_pic , class: "img-circle" if current_user.fb_pic.present? %>
 
-<%# if @nanny.status == nil %>
+<% if @nanny.status == nil %>
 
 		<%= simple_form_for @nanny do |n|%>
 			<%= n.simple_fields_for :user do |u| %>
@@ -19,7 +19,7 @@
 			<%= n.button :submit %>
 		<% end %>
 
-<%# elsif @nanny.status == "checking" %>
+<% elsif @nanny.status == "checking" %>
 
 		審核中!
 
@@ -28,7 +28,7 @@
 		<% end %>
 
 
-<%# elsif @nanny.status == "pass" %>
+<% elsif @nanny.status == "pass" %>
 
 		<%= simple_form_for @nanny do |n|%>
 
@@ -53,5 +53,5 @@
 			<%= n.button :submit %>
 		<% end %>
 
-<%# end %>
+<% end %>
 
