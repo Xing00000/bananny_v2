@@ -4,22 +4,22 @@
 
 <%= image_tag current_user.fb_pic , class: "img-circle" if current_user.fb_pic.present? %>
 
-<% if @nanny.status == nil %>
+<%# if @nanny.status == nil %>
 
 		<%= simple_form_for @nanny do |n|%>
 			<%= n.simple_fields_for :user do |u| %>
-				<%= u.input :line_id, required: true %>
-				<%= u.input :phone, required: true%>
+				<%= u.input :line_id %>
+				<%= u.input :phone %>
 			<% end %>
 
 			<%= n.simple_fields_for :image do |i| %>
-				<%= i.input :image, :as => :file, required: true %>
+				<%= i.input :image, :as => :file %>
 			<% end %>
 
 			<%= n.button :submit %>
 		<% end %>
 
-<% elsif @nanny.status == "checking" %>
+<%# elsif @nanny.status == "checking" %>
 
 		審核中!
 
@@ -28,12 +28,12 @@
 		<% end %>
 
 
-<% elsif @nanny.status == "pass" %>
+<%# elsif @nanny.status == "pass" %>
 
 		<%= simple_form_for @nanny do |n|%>
 
 			<%= n.simple_fields_for :user do |u| %>
-				<%= u.input :name, label: '姓名'%>
+				<%= u.input :name, label: '姓名', as: :tel, html5: true  %>
 				<%= u.input :nickname, label: '暱稱' %>
 				<%= u.input :line_id %>
 				<%= u.input :phone, label: '手機號碼', as: :tel, html5: true  %>
@@ -53,4 +53,5 @@
 			<%= n.button :submit %>
 		<% end %>
 
-<% end %>
+<%# end %>
+
