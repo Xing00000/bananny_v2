@@ -1,0 +1,2 @@
+class InHomeNanny < ApplicationRecord
+end
