@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   root :to => "welcome#index"
 
   resources :nannies
-  resources :on_side_nannies, :only => [:new, :edit, :update]
-  resources :on_side_nannies, :only => [:new, :edit, :update]
+  resources :on_side_nannies, :only => [:new]
+  resources :in_home_nannies, :only => [:new]
   resources :users
 
 end

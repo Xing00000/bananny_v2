@@ -37,11 +37,15 @@ class NanniesController < ApplicationController
 	  if nanny.status == "checking"
 	    nanny.update_attributes(nanny_params)
 	    redirect_to new_nanny_path, notice: '更新成功!'
-	  elsif nanny.status == "pass"
+	  elsif nanny.status == "continue"
 	  	nanny.update_attributes(nanny_params)
 	  	if nanny.nanny_type == "到府"
 	  		redirect_to new_on_side_nanny_path, notice: '到府保母!'
+	  	elsif nanny.nanny_type == "在宅"
+	  		redirect_to new_in_home_nanny_path, notice: '在宅保母!'
 	  	end
+	  elsif nanny.status == "pass"
+	  	redirect_to nanny
 	  end
 
   end
@@ -61,8 +65,14 @@ class NanniesController < ApplicationController
       															:user_attributes => [:name, :nickname, :birthdate,
       																									 :line_id, :phone, :id, :_destroy],
       															:image_attributes => [:image, :id, :_destroy],
-      															:schedule_settings_attributes => [:available, :start_at, :end_at, :id, :_destroy],
-      															:nanny_charges_attributes => [:amount, :id, :_destroy])
+      															:schedule_settings_attributes => [:available, :start_at,
+      																																:end_at, :id, :_destroy],
+      															:nanny_charges_attributes => [:amount, :id, :_destroy],
+      															:in_home_nanny_attributes => [:hope_baby_quantity, :number_of_baby_care,
+      																														 :id, :_destroy,
+      																 :location_attributes  => [:zipcode_id, :address, :id, :_destroy],
+      														  	 :images_attributes => [:image, :id, :_destroy]
+      														  ])
     end
 
     def user_data

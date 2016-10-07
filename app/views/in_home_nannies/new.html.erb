@@ -1,0 +1,33 @@
+在宅保母
+<%= simple_form_for @nanny do |n|%>
+	<%= n.simple_fields_for :in_home_nanny do |h| %>
+
+		<%= h.simple_fields_for :location do |l| %>
+			<%= l.association :zipcode, label_method: :area, value_method: :id %>
+			<%= l.input :address %>
+		<% end %>
+		<%= h.simple_fields_for :images do |i| %>
+				<%= image_tag i.object.image %>
+				<%= i.input :image, :as => :file, required: true %>
+			<% end %>
+
+		<%= h.input :hope_baby_quantity, label: "希望拖育數量", input_html: { min: '0', max: "4", step: '1' } %>
+		<%= h.input :number_of_baby_care, label: "已收拖育數量", input_html: { min: '0', max: "4", step: '1' } %>
+	<% end %>
+
+	<%= n.simple_fields_for :schedule_settings do |w| %>
+		<%= w.input :available, label: "#{ScheduleSetting::DAYNAMES[w.object.week]}" %>
+		<%= w.input :start_at, as: :time, html5: true %>
+		<%= w.input :end_at, as: :time, html5: true %>
+	<% end %>
+
+	<%= n.input :care_start_date, label: '開始可接案日期', as: :date, html5: true %>
+短期保母
+	<%= n.input :min_care_hour, label: '最低托育時數', as: :integer, html5: true %>
+托育費用
+	<%= n.simple_fields_for :nanny_charges do |c| %>
+		<%= c.input :amount, label: "#{c.object.charge_unit}#{c.object.charge_name}", input_html: { min: '100', step: '50' } %>
+	<% end %>
+
+	<%= n.button :submit %>
+<% end %>
