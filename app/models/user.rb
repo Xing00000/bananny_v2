@@ -17,14 +17,7 @@ class User < ApplicationRecord
 
   serialize :fb_raw_data
 #fb 登入會壞掉
-  # validates :name,  :presence => {:message => "不能空白" },
-  #                   :length => {:minimum => 1, :maximum => 254}
-  # validates :nickname,  :presence => {:message => "不能空白" },
-  #                       :length => {:minimum => 1, :maximum => 254}
-  # validates :phone,  :presence => { :message => "不能空白" },
-  #                    :length => {:minimum => 9, :maximum => 13 }
-  # validates :birthdate,  :presence => { :message => "不能空白" }
-  # validates :line_id,  :presence => { :message => "不能空白" }
+
 
 
 
