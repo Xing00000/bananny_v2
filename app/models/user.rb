@@ -1,12 +1,19 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise 	:database_authenticatable, :registerable,
-       		:recoverable, :rememberable, :trackable, :validatable,
-       		:omniauthable, :omniauth_providers => [:facebook]
 
   has_one :nanny, inverse_of: :user
+  has_one :image, :as => :imageable, :dependent => :destroy
+  has_many :locations, :as => :locationable, :dependent => :destroy
 
+  accepts_nested_attributes_for :image, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :locations, :reject_if => :all_blank, :allow_destroy => true
+
+
+
+  devise  :database_authenticatable, :registerable,
+          :recoverable, :rememberable, :trackable, :validatable,
+          :omniauthable, :omniauth_providers => [:facebook]
 
   serialize :fb_raw_data
 

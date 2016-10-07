@@ -45,7 +45,7 @@
 			<%= n.association :qualifications, :as => :check_boxes, label_method: :name, value_method: :id, include_blank: false %>
 			<%= n.association :orther_qualifications, :as => :check_boxes, label_method: :name, value_method: :id, include_blank: false %>
 			<%= n.label :拖育經驗起始日%>
-			<%= n.month_field :since %>
+			<%= n.input :since ,as: :date, html5: true%>
 			<%= n.input :long_tern, label: '長期' %>
 			<%= n.input :short_tern, label: '短期' %>
 			<%= n.input :nanny_type, label: '接案類型', collection: [:到府, :在宅], as: :radio_buttons %>
