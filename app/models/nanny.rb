@@ -29,4 +29,6 @@ class Nanny < ApplicationRecord
 	accepts_nested_attributes_for	:orther_qualifications, :reject_if => :all_blank, :allow_destroy => true
 	accepts_nested_attributes_for	:in_home_nanny, :reject_if => :all_blank, :allow_destroy => true
 
+	validates_presence_of :introduction, :since, :care_start_date, :min_care_hour
+
 end

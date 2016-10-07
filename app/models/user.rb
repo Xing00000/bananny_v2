@@ -17,6 +17,18 @@ class User < ApplicationRecord
 
   serialize :fb_raw_data
 
+  validates :name,  :presence => {:message => "不能空白" },
+                    :length => {:minimum => 1, :maximum => 254}
+  validates :nickname,  :presence => {:message => "不能空白" },
+                        :length => {:minimum => 1, :maximum => 254}
+  validates :phone,  :presence => { :message => "不能空白" },
+                     :length => {:minimum => 9, :maximum => 13 }
+  validates :birthdate,  :presence => { :message => "不能空白" }
+  validates :line_id,  :presence => { :message => "不能空白" }
+
+
+
+
   def self.from_omniauth(auth)
      # Case 1: Find existing user by facebook uid
      user = User.find_by_fb_uid( auth.uid )
