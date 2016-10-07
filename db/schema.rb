@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007013544) do
+ActiveRecord::Schema.define(version: 20161007034203) do
 
   create_table "images", force: :cascade do |t|
     t.string   "image"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 20161007013544) do
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.index ["nanny_id"], name: "index_in_home_nannies_on_nanny_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.integer  "zipcode_id"
+    t.string   "address"
+    t.string   "location_type"
+    t.integer  "locationable_id"
+    t.string   "locationable_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["zipcode_id"], name: "index_locations_on_zipcode_id"
   end
 
   create_table "nannies", force: :cascade do |t|
