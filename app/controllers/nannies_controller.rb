@@ -46,6 +46,9 @@ class NanniesController < ApplicationController
 	  	end
 	  elsif @nanny.status == "pass"
 	  	redirect_to nanny
+	  else
+	  	@nanny.update_attributes(nanny_params)
+	    redirect_to new_nanny_path, notice: '狀態錯誤!'
 	  end
 
   end
