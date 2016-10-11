@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   resources :in_home_nannies, :only => [:new]
   resources :users
 
+  namespace :admin do
+  	resources :users, :only => [:update]
+	end
+
 end
