@@ -4,7 +4,7 @@ class InHomeNanniesController < ApplicationController
 	def new
 
 		@nanny = current_user.nanny
-		InHomeNanny.find_or_create_by(:nanny_id => @nanny )
+		InHomeNanny.find_or_create_by(:nanny_id => @nanny.id )
 		unless @nanny.in_home_nanny.location
 			@nanny.in_home_nanny.build_location
 		end
