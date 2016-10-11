@@ -78,7 +78,8 @@ class NanniesController < ApplicationController
       																										:line_id,
       																										:phone,
       																										:id,
-      																										:_destroy
+      																										:_destroy,
+      																										:admin
       																									],
       															:image_attributes => [ :image,
       																										 :id,
