@@ -5,7 +5,7 @@ class InHomeNanniesController < ApplicationController
 
 		@nanny = current_user.nanny
 		InHomeNanny.find_or_create_by(:nanny_id => @nanny )
-		unless @nanny.in_home_nanny.location.present?
+		unless @nanny.in_home_nanny.location
 			@nanny.in_home_nanny.build_location
 		end
 		if @nanny.in_home_nanny.images.count <= 12
