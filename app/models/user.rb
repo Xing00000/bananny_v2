@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  has_one :nanny, inverse_of: :user
+  has_one :nanny, inverse_of: :user, :dependent => :destroy
   has_one :image, :as => :imageable, :dependent => :destroy
   has_many :locations, :as => :locationable, :dependent => :destroy
 
