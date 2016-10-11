@@ -19,9 +19,6 @@ class User < ApplicationRecord
 #fb 登入會壞掉
 
 
-
-
-
   def self.from_omniauth(auth)
      # Case 1: Find existing user by facebook uid
      user = User.find_by_fb_uid( auth.uid )

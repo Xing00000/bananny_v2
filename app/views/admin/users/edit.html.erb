@@ -1,0 +1,17 @@
+
+<% @nannies.each do |nanny| %>
+
+		<%= simple_form_for nanny do |n|%>
+			<%= n.simple_fields_for :user do |u| %>
+				<%= u.input :admin%>
+			<% end %>
+			<%= n.simple_fields_for :image do |u| %>
+				<%= image_tag u.object.image %>
+			<% end %>
+
+			<%= n.input :status %>
+			<%= n.input :license_number %>
+			/checking/continue
+			<%= n.button :submit %>
+		<% end %>
+<% end %>

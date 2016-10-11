@@ -1,16 +1,4 @@
 hello world
-  <% if current_user %>
-    <%= link_to('登出', destroy_user_session_path, :method => :delete) %> |
 
 
-  <% else %>
-    <%= link_to "登入 Facebook", user_facebook_omniauth_authorize_path %>
-  <% end %>
 
-
-	<% if current_user && current_user.user_type == nil %>
-		<%= image_tag current_user.fb_pic if current_user.fb_pic.present? %>
-		<%= current_user.name%>
-
-		<%= link_to('我是保母', new_nanny_path()) %>
-	<% end %>

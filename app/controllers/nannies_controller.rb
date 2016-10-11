@@ -33,18 +33,18 @@ class NanniesController < ApplicationController
   end
 
 	def update
-		nanny = current_user.nanny
-	  if nanny.status == "checking"
-	    nanny.update_attributes(nanny_params)
+
+	  if @nanny.status == "checking"
+	    @nanny.update_attributes(nanny_params)
 	    redirect_to new_nanny_path, notice: '更新成功!'
-	  elsif nanny.status == "continue"
-	  	nanny.update_attributes(nanny_params)
-	  	if nanny.nanny_type == "到府"
+	  elsif @nanny.status == "continue"
+	  	@nanny.update_attributes(nanny_params)
+	  	if @nanny.nanny_type == "到府"
 	  		redirect_to new_on_side_nanny_path, notice: '到府保母!'
-	  	elsif nanny.nanny_type == "在宅"
+	  	elsif @nanny.nanny_type == "在宅"
 	  		redirect_to new_in_home_nanny_path, notice: '在宅保母!'
 	  	end
-	  elsif nanny.status == "pass"
+	  elsif @nanny.status == "pass"
 	  	redirect_to nanny
 	  end
 
