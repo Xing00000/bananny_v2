@@ -9,7 +9,7 @@
 				<%= image_tag u.object.image %>
 			<% end %>
 
-			<%= n.input :status %>
+			<%= n.input :status, label: '接案類型', collection: [:checking, :continue], as: :radio_buttons  %>
 			<%= n.input :license_number %>
 			/checking/continue
 			<%= n.button :submit %>
